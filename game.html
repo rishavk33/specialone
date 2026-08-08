@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎯 Beat the Rishav Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffe6f0, #ffb6c1);
+      font-family: 'Comic Sans MS', cursive;
+      color: #b03060;
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 10px;
+      font-size: 2rem;
+    }
+
+    #score {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+
+    .matka {
+      position: absolute;
+      width: 70px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .matka:active {
+      transform: scale(1.1);
+    }
+
+    .message {
+      position: absolute;
+      font-size: 1rem;
+      color: #ff1493;
+      font-weight: bold;
+      animation: riseUp 1.2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes riseUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-50px); opacity: 0; }
+    }
+
+    .back-btn {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff69b4;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+    }
+    .back-btn:hover {
+      background: #ff1493;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Beat me if you can!</h1>
+  <div id="score">Score: 0</div>
+
+  <button class="back-btn" onclick="goBack()">⬅ Back to Menu</button>
+
+  <script>
+    let score = 0;
+    const messages = [
+      "Catie❤️",
+      "Bach gya 💕",
+      "Acha Acha 💖",
+      "My heart melts for you 🥰",
+      " Baddie 🌸",
+      "Cutiepie ❤️",
+      "You are still cute",
+      "My Special One Rima❤️",
+    ];
+
+    function createMatka(){
+      const matka = document.createElement('img');
+      matka.src = "https://media.tenor.com/5IRHkK2k-E8AAAAm/dudu.webp"; // Whole pot
+      matka.classList.add("matka");
+      matka.style.left = Math.random() * (window.innerWidth - 70) + "px";
+      matka.style.top = Math.random() * (window.innerHeight - 150) + "px";
+
+      matka.onclick = function(){
+        score++;
+        document.getElementById("score").innerText = "Score: " + score;
+        
+        // Change to broken pot
+        matka.src = "https://media.tenor.com/Q5qinV6Za04AAAAM/saltobears-squeeze.gif";
+        
+        // Show sweet message
+        const msg = document.createElement("div");
+        msg.innerText = messages[Math.floor(Math.random() * messages.length)];
+        msg.classList.add("message");
+        msg.style.left = matka.style.left;
+        msg.style.top = matka.style.top;
+        document.body.appendChild(msg);
+
+        setTimeout(() => msg.remove(), 1200);
+        setTimeout(() => matka.remove(), 500);
+      };
+
+      document.body.appendChild(matka);
+
+      setTimeout(() => {
+        if (matka.parentNode) matka.remove();
+      }, 3000);
+    }
+
+    setInterval(createMatka, 1200);
+
+    function goBack(){
+      window.location.href = "menu.html"; // Updated to point back to the menu page we created
+    }
+  </script>
+</body>
+</html>
