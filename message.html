@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Special Message 💌</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      color: #880e4f;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-x: hidden; /* Prevents horizontal scroll from hearts */
+      overflow-y: auto;   /* Allows scrolling on very small phones */
+      position: relative;
+    }
+
+    /* Flowing Hearts CSS */
+    .heart {
+      position: fixed; /* Keeps hearts flowing across the whole screen even if scrolling */
+      color: rgba(255, 64, 129, 0.4);
+      font-size: 20px;
+      animation: floatUp 8s linear infinite;
+      z-index: 0; 
+      pointer-events: none; 
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    .letter-card {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.5);
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      z-index: 10; /* Keeps card above the flowing hearts */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .top-gif {
+      width: 140px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      pointer-events: none;
+    }
+
+    h2 {
+      color: #d81b60;
+      font-size: 2rem;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .message-body {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .signature {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d81b60;
+      text-align: right;
+      width: 100%;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-top: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background: #ff4081;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .back-btn:hover {
+      background: #f50057;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 0, 87, 0.5);
+    }
+
+    /* Extra mobile responsiveness for smaller screens */
+    @media (max-width: 400px) {
+      .letter-card {
+        padding: 30px 20px;
+      }
+      h2 {
+        font-size: 1.7rem;
+      }
+      .message-body {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- JavaScript to create flowing hearts -->
+  <script>
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 5 + 6) + "s";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        heart.style.fontSize = (Math.random() * 15 + 10) + "px";
+        document.body.appendChild(heart);
+      }
+    }
+    createHearts();
+  </script>
+
+  <div class="letter-card">
+    <!-- Cute romantic GIF at the top -->
+    <img src="https://media.tenor.com/8gJYQy7k_NUAAAAm/tkthao219-bubududu.webp" alt="Cute Hugging Cats" class="top-gif">
+    
+    <h2>To My Rima ❤️</h2>
+    
+    <div class="message-body">
+      <p>I just wanted to take a moment to remind you how incredibly special you are to me.</p>
+      <p>Seeing your smile makes my entire day better, and I created this little space just to bring a smile to your face today.</p>
+      <p>You are my favorite person, my perfect half, and I love you more than words can say. No matter what, I'm always here for you.</p>
+    </div>
+
+    <div class="signature">
+      Forever Yours,<br>
+      Rishav
+    </div>
+  </div>
+
+  <button class="back-btn" onclick="goBack()">⬅ Back to Menu</button>
+
+  <script>
+    function goBack(){
+      window.location.href = "menu.html";
+    }
+  </script>
+
+</body>
+</html>
