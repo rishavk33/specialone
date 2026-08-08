@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Surprise ✨</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      color: #fff;
+      overflow: hidden; /* Prevents scrollbars from the floating hearts */
+      position: relative;
+    }
+
+    /* Flowing Hearts CSS */
+    .heart {
+      position: absolute;
+      color: rgba(255, 64, 129, 0.4);
+      font-size: 20px;
+      animation: floatUp 8s linear infinite;
+      z-index: 0; /* Keeps hearts behind the card */
+      pointer-events: none; /* Prevents hearts from blocking clicks */
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 50px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.4);
+      width: 85%;
+      max-width: 350px;
+      z-index: 10; /* Keeps card in front of hearts */
+    }
+
+    h2 {
+      color: #d81b60;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      margin-top: 0;
+    }
+
+    p {
+      color: #880e4f;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .option-btn {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      margin: 15px 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      background: #ff4081;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      box-sizing: border-box;
+      box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .option-btn:hover {
+      background: #f50057;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(245, 0, 87, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- JavaScript to create flowing hearts -->
+  <script>
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        // Randomize starting horizontal position
+        heart.style.left = Math.random() * 100 + "vw";
+        // Randomize speed and delay for a natural look
+        heart.style.animationDuration = (Math.random() * 5 + 6) + "s";
+        heart.style.animationDelay = Math.random() * 5 + "s";
+        // Randomize size
+        heart.style.fontSize = (Math.random() * 15 + 10) + "px";
+        document.body.appendChild(heart);
+      }
+    }
+    createHearts();
+  </script>
+
+  <div class="card">
+    <h2>I made this for you</h2>
+    <p>Choose your surprise 👇</p>
+
+    <!-- Links to your game -->
+    <a href="game.html" class="option-btn">🎯 Play Beat the Rishav Game</a>
+    
+    <!-- Links to the message page we will build next -->
+    <a href="message.html" class="option-btn">💌 Special Message</a>
+  </div>
+
+</body>
+</html>
